@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tìm ước chung lớn nhất</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+			color: #c68e01;
+		}
+
+		label {
+			font-size: 20px;
+			color: #c68e01;
+		}
+
+		input[type=number] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border: none;
+			border-bottom: 2px solid #c68e01;
+			font-size: 20px;
+		}
+
+		button {
+			background-color: #c68e01;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			cursor: pointer;
+			font-size: 20px;
+		}
+
+		button:hover {
+			background-color: #c68e01;
+		}
+
+		#result {
+			font-size: 30px;
+			font-weight: bold;
+			color: #c68e01;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Tìm ước chung lớn nhất</h1>
+	<div class="calculator">
+		<label for="number1">Nhập số thứ nhất:</label>
+		<input type="number" id="number1" placeholder="Nhập số thứ nhất" /><br /><br />
+		<label for="number2">Nhập số thứ hai:</label>
+		<input type="number" id="number2" placeholder="Nhập số thứ hai" /><br /><br />
+		<button onclick="calculate()">Tính</button>
+		<button onclick="clearData()">Clear</button>
+		<p id="result"></p>
+	</div>
+	<script>
+		function calculate() {
+			let number1 = parseInt(document.getElementById("number1").value);
+			let number2 = parseInt(document.getElementById("number2").value);
+			let result = document.getElementById("result");
+
+			if (isNaN(number1) || isNaN(number2)) {
+				result.innerHTML = "Vui lòng nhập đúng định dạng số";
+			} else if (number2 === 0) {
+				result.innerHTML = "Không thể tính được ước chung lớn nhất";
+			} else {
+				while (number1 != number2) {
+					if (number1 > number2) {
+						number1 -= number2;
+					} else {
+						number2 -= number1;
+					}
+				}
+
+				result.innerHTML = "Ước chung lớn nhất của " + parseInt(document.getElementById("number1").value) + " và " + parseInt(document.getElementById("number2").value) + " là " + number1;
+			}
+		}
+
+		function clearData() {
+			document.getElementById("number1").value = "";
+			document.getElementById("number2").value = "";
+			document.getElementById("result").innerHTML = "";
+		}
+	</script>
+</body>
+</html>
